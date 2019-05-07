@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
     color: var(--text-color);
     overflow-x:hidden;
+    padding-bottom: 60px;
   }
   * {
     box-sizing: border-box;
@@ -45,11 +46,10 @@ const GlobalStyle = createGlobalStyle`
 
 `;
 
-
 const Success = styled.div`
   width: 100%;
   padding: 30px 0;
-  vertical-align: middle;
+  vertical-align: bottom;
   max-height: 100px;
   background: #4bb543;
   color: white;
@@ -57,11 +57,10 @@ const Success = styled.div`
   font-weight: bold;
   text-align: center;
   position: absolute;
-  top: 50px;
+  /* top: 50px; */
   bottom: 0;
   animation: ${LoadingKeyframe} 0.4s ease-in;
 `;
-
 
 const Loading = styled.div`
   width: 100%;
@@ -128,6 +127,13 @@ const FormStyle = styled.div`
     outline: none;
     transition: transform 0.3s ease-in-out;
     width: 100%;
+  }
+  label {
+    margin-left: 2em;
+    display: block;
+    position: relative;
+    margin-top: -1.7em; /* make this margin match whatever your line-height is */
+    line-height: 1.4em; /* can be set here, or elsewehere */
   }
   input:-webkit-autofill,
   input:-webkit-autofill:hover,

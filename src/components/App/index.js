@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { GlobalStyle } from "../../styles/GlobalStyle";
 import Navigation from "../Navigation";
 
-
 class App extends Component {
   state = {
     open: false
@@ -23,13 +22,11 @@ class App extends Component {
     }
   };
 
-
   render() {
     const { open } = this.state;
 
     return (
-      
-     <Router>
+      <Router>
         <GlobalStyle />
         <Navigation
           sidebarToggleClickHandler={this.sidebarToggleClickHandler}
@@ -40,8 +37,7 @@ class App extends Component {
           <Route path={ROUTES.SIGN_IN} component={SignInPage} />
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
           <Route path={ROUTES.OSA} component={OSA} />
-          <Route path={ROUTES.HOME} component={HomePage} />
-
+          <Route path={ROUTES.LANDING} component={HomePage} />
         </div>
       </Router>
     );
@@ -49,5 +45,3 @@ class App extends Component {
 }
 
 export default withAuthentication(App);
-
-

@@ -1,97 +1,134 @@
-import React, { Component } from 'react';
-import { compose } from 'recompose';
-import { withAuthorization, } from '../Session';
-import { withFirebase } from '../Firebase';
-import {FormStyle, Success} from '../../styles/GlobalStyle';
+import React, { Component } from "react";
+import { compose } from "recompose";
+import { withAuthorization } from "../Session";
+import { withFirebase } from "../Firebase";
+import { FormStyle, Success } from "../../styles/GlobalStyle";
 import * as ROUTES from "../../constants/routes";
 
 class OSA extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    loading: true,
+    success: false,
+    attending: false,
+    antalKommer: 0,
+    thankYou: false
+  };
+  handleFocus = event => event.target.select();
 
-    this.state = {
-      loading: false,
-      success:false,
-      attending:true,
-      antalKommer:0,
-    };
-  }
+  clearThankYou = () => {
+    this.setState({ thankYou: false });
+  };
 
-
-
-
-  onSubmit = (event) => {
+  onSubmit = event => {
     this.setState({
-        success: true
-      });
-    const { attending, antalKommer} = this.state;
-
-    this.props.firebase.bookings().push({
-      bokare:this.props.authUser.email,
-      attending:this.state.antalKommer,
-      kommer:this.state.attending,
-      createdAt: this.props.firebase.serverValue.TIMESTAMP,
-    }) .then( () =>{ 
-      
-        this.props.history.push(ROUTES.HOME);
-    }) 
-
-    
-    
+      thankYou: true
+    });
+    //setTimeout(this.clearThankYou, 2000);
     event.preventDefault();
   };
- 
-  onChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-    this.setState({
-        success: false
-      });
-      console.log(this.state);
 
+  onChange = event => {
+    const { target } = event;
+    const { attending, antalKommer } = this.state;
+    switch (event.target.type) {
+      case "checkbox":
+        this.setState(
+          (prevState, props) => ({ [target.name]: target.checked }),
+          () => {
+            this.props.firebase.user(this.props.authUser.uid).update({
+              booking: {
+                [target.name]: target.checked
+              }
+            });
+          }
+        );
+
+        break;
+      case "number":
+        this.setState(
+          (prevState, props) => ({
+            attending: true,
+            [target.name]: target.value
+          }),
+          () => {
+            this.props.firebase.user(this.props.authUser.uid).update({
+              booking: {
+                [target.name]: target.value,
+                attending: true
+              }
+            });
+          }
+        );
+        break;
+    }
+  };
+  componentDidMount() {
+    const {
+      authUser: { uid: userID }
+    } = this.props;
+
+    this.props.firebase
+      .user(userID)
+      .once("value")
+      .then(snapshot => {
+        const { booking } = snapshot.val();
+        if (booking) {
+          this.setState({ ...booking, loading: false });
+          //console.log(userObject.booking);
+        } else {
+          this.setState({ loading: false });
+        }
+      });
   }
 
   render() {
-    const {attending ,antalKommer} = this.state;
+    const { attending, antalKommer } = this.state;
 
-    const isInvalid = antalKommer === '';
+    const isInvalid = antalKommer === "";
 
     return (
       <div>
-      {this.state.success ? (
-          <Success>bokningen har skickats!</Success>
-        ) : null}
-        { !this.state.loading ?
+        {this.state.thankYou ? <Success>Tack, välkomna!</Success> : null}
+        {!this.state.loading ? (
           <FormStyle fullWidth>
             <form onSubmit={this.onSubmit}>
-            <ul> 
-
-            <li> 
-            <p>Hur många tar du med dig?</p>
-            <input 
-            name="antalKommer" 
-            type="number" 
-            max="10" 
-            min="0" 
-            value={antalKommer}
-            onChange={this.onChange}
-            />
-            </li>
-
-            </ul>
-              <button type="submit">
-                Boka!
-              </button>
+              <ul>
+                <li>
+                  <input
+                    name="attending"
+                    type="checkbox"
+                    checked={attending}
+                    onChange={this.onChange}
+                  />
+                  <label>Ja, jag kommer på Donya's student</label>
+                </li>
+                <li>
+                  <p>Hur många tar du med dig?</p>
+                  <input
+                    name="antalKommer"
+                    type="number"
+                    max="10"
+                    min="0"
+                    value={antalKommer}
+                    onChange={this.onChange}
+                    onFocus={this.handleFocus}
+                  />
+                </li>
+              </ul>
+              <button type="submit">Spara</button>
             </form>
           </FormStyle>
-          : <h1>Webbsidan laddar...</h1> }
-        </div>
-      );
-    }
+        ) : (
+          <h1>Vänta ett ögonblick...</h1>
+        )}
+      </div>
+    );
   }
+}
 
-  const condition = authUser => !!authUser;
+const condition = authUser => !!authUser;
 
-  export default compose(
-    withFirebase,
-    withAuthorization(condition),
-  )(OSA);
+export default compose(
+  withFirebase,
+  withAuthorization(condition)
+)(OSA);

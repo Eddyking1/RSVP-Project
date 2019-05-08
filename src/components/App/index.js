@@ -32,7 +32,7 @@ class App extends Component {
           sidebarToggleClickHandler={this.sidebarToggleClickHandler}
           open={open}
         />
-        <div>
+        <div key={"RSVP"}>
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
           <Route path={ROUTES.SIGN_IN} component={SignInPage} />
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />

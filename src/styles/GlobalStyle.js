@@ -77,6 +77,26 @@ const Loading = styled.div`
   bottom: 0;
   animation: ${LoadingKeyframe} 0.8s infinite ease-in-out;
 `;
+const Button = styled.div`
+  padding: 0.5em 1.5em;
+  margin: 2em 0;
+  border: none;
+  outline: none;
+  background: #4bb543;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  border-radius: 0.1em;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.04);
+  }
+  &:disabled {
+    pointer-events: none;
+    background-color: grey;
+  }
+`;
 
 const FormStyle = styled.div`
   display: flex;
@@ -84,8 +104,8 @@ const FormStyle = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: calc(100vh - 60px);
-  width: 100%;
+  /* min-height: 160px; */
+  padding-top: 40px;
 
   margin: 0;
   flex-direction: column;
@@ -188,4 +208,4 @@ const FormStyle = styled.div`
     font-size: 1.2em;
   }
 `;
-export { GlobalStyle, FormStyle, Success, Loading };
+export { GlobalStyle, FormStyle, Success, Loading, Button };

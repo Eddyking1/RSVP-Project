@@ -5,3 +5,6 @@ export const ACCOUNT = "/account";
 export const PASSWORD_FORGET = "/pw-forget";
 export const OSA = "/OSA";
 export const LANDING = "/";
+export const ADMIN = "/admin";
+
+export const ADMIN_DETAILS = "/admin/:id";

@@ -30,7 +30,9 @@ const NavigationAuth = () => (
     <NavigationExit>
       <NavCross />
     </NavigationExit>
-
+    <li>
+      <Link to={ROUTES.ADMIN}>Admin</Link>
+    </li>
     <li>
       <Link to={ROUTES.LANDING}>Hem</Link>
     </li>

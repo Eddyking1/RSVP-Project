@@ -45,6 +45,7 @@ class OSA extends Component {
 
         break;
       case "number":
+        if (event.target.value === "") event.target.value = 0;
         this.setState(
           (prevState, props) => ({
             attending: true,

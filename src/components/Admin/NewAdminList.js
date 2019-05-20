@@ -36,7 +36,7 @@ class UserListBase extends Component {
       const usersObject = snapshot.val();
 
       const usersList = Object.keys(usersObject).map(key => ({
-        booking: { antalKommer: 0, attending: false },
+        booking: { antalKommer: "0", attending: false },
         ...usersObject[key],
         uid: key
       }));
@@ -44,7 +44,7 @@ class UserListBase extends Component {
       this.setState({
         users: usersList,
         loading: false,
-        hideNotAttending: false
+        hideNotAttending: true
       });
     });
   }
@@ -56,10 +56,17 @@ class UserListBase extends Component {
   calcTotal = users => {
     if (users.length > 1) {
       console.log(users);
-      return users.reduce(
-        (acc, curr) => acc + parseInt(curr.booking.antalKommer),
-        0
-      );
+      return users.reduce((acc, curr) => {
+        console.log(curr.username + " : " + curr.booking.antalKommer);
+        let guests = parseInt(curr.booking.antalKommer);
+        if (isNaN(guests)) {
+          guests = 0;
+        }
+        if (curr.booking.attending === true) {
+          guests++;
+        }
+        return acc + guests;
+      }, 0);
     } else {
       return null;
     }

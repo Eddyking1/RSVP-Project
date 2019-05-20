@@ -104,18 +104,8 @@ class UserListBase extends Component {
                 )}
                 <span>
                   <strong>och tar med sig: </strong>
-                  {user.booking.antalKommer} antal gäster.
-                </span>
-
-                <span>
-                  <Link
-                    to={{
-                      pathname: `${ROUTES.ADMIN_DETAILS}/${user.uid}`,
-                      state: { user }
-                    }}
-                  >
-                    Details
-                  </Link>
+                  {user.booking.antalKommer ? user.booking.antalKommer : 0}{" "}
+                  antal gäster.
                 </span>
               </li>
             ))}

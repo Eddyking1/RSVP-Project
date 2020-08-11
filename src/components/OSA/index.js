@@ -5,6 +5,12 @@ import { withFirebase } from "../Firebase";
 import { FormStyle, Success, Button } from "../../styles/GlobalStyle";
 import * as ROUTES from "../../constants/routes";
 
+const RSVPOSA = () => (
+  <div>
+    <OSA />
+  </div>
+);
+
 class OSA extends Component {
   state = {
     loading: true,
@@ -93,42 +99,35 @@ class OSA extends Component {
         {this.state.loading ? (
           <h1>Vänta ett ögonblick...</h1>
         ) : (
-          [
-            <FormStyle fullWidth key={"Form"}>
-              <form onSubmit={this.onSubmit}>
-                <ul>
-                  <li key={1}>
-                    <input
-                      name="attending"
-                      type="checkbox"
-                      checked={attending}
-                      onChange={this.onChange}
-                    />
-                    <label>Ja, jag kommer på Donya's student</label>
-                  </li>
-                  <li key={2}>
-                    <p>Hur många tar du med dig?</p>
-                    <input
-                      name="antalKommer"
-                      type="number"
-                      max="10"
-                      min="0"
-                      value={antalKommer}
-                      onChange={this.onChange}
-                      onFocus={this.handleFocus}
-                    />
-                  </li>
-                </ul>
-
-                {this.state.thankYou ? (
-                  <Button type="submit">Sparat</Button>
-                ) : (
-                  <button type="submit">Spara</button>
-                )}
-              </form>
-            </FormStyle>
-          ]
-        )}
+            [
+              <FormStyle fullWidth key={"Form"}>
+                <form onSubmit={this.onSubmit}>
+                  <input
+                    name="attending"
+                    type="checkbox"
+                    checked={attending}
+                    onChange={this.onChange}
+                  />
+                  <p>Hur många tar du med dig?</p>
+                  <input
+                    name="antalKommer"
+                    type="number"
+                    max="10"
+                    min="0"
+                    value={antalKommer}
+                    onChange={this.onChange}
+                    onFocus={this.handleFocus}
+                  />
+                  
+                  {this.state.thankYou ? (
+                    <Button type="submit">Sparat</Button>
+                  ) : (
+                      <button type="submit">Spara</button>
+                    )}
+                </form>
+              </FormStyle>
+            ]
+          )}
       </div>
     );
   }
@@ -136,7 +135,10 @@ class OSA extends Component {
 
 const condition = authUser => !!authUser;
 
-export default compose(
+const RSVP = compose(
   withFirebase,
   withAuthorization(condition)
 )(OSA);
+
+export default RSVPOSA;
+export { RSVP };

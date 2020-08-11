@@ -36,9 +36,12 @@ const NavigationAuth = () => (
     <li>
       <Link to={ROUTES.LANDING}>Hem</Link>
     </li>
-    {/* <li>
+    <li>
       <Link to={ROUTES.OSA}>OSA</Link>
-    </li> */}
+    </li>
+    <li>
+      <Link to={ROUTES.CREATE_OSA}>Create New OSA</Link>
+    </li>
     <SignOutButton />
   </ul>
 );

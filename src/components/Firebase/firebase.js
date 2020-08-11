@@ -1,20 +1,11 @@
 import app from "../../../node_modules/firebase/app";
+import { fbConfig } from "../../config/config";
 import "../../../node_modules/firebase/auth";
 import "../../../node_modules/firebase/database";
 
-const config = {
-    apiKey: "AIzaSyChQxPgqX4baxZruTabYQffjVw5RQ2zB5U",
-    authDomain: "student-dony.firebaseapp.com",
-    databaseURL: "https://student-dony.firebaseio.com",
-    projectId: "student-dony",
-    storageBucket: "student-dony.appspot.com",
-    messagingSenderId: "896674085185",
-    appId: "1:896674085185:web:5c553d6207c47ec3"
-  };
-
 class Firebase {
   constructor() {
-    app.initializeApp(config);
+    app.initializeApp(fbConfig);
     this.serverValue = app.database.ServerValue;
     this.auth = app.auth();
     this.db = app.database();

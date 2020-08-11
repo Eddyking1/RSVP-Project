@@ -4,9 +4,9 @@ import { withAuthentication } from "../Session";
 import SignUpPage from "../SignUp";
 import SignInPage from "../SignIn";
 import HomePage from "../Home";
-import OSA from "../OSA";
+import RSVPOSA from "../OSA";
 import Admin from "../Admin/NewAdminList.js";
-
+import CreateCustomOSA from "../OSA/CreateCustomOSA.js";
 import PasswordForgetPage from "../PasswordForget";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { GlobalStyle } from "../../styles/GlobalStyle";
@@ -38,7 +38,8 @@ class App extends Component {
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
           <Route path={ROUTES.SIGN_IN} component={SignInPage} />
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-          <Route path={ROUTES.OSA} component={OSA} />
+          <Route path={ROUTES.OSA} component={RSVPOSA} />
+          <Route path={ROUTES.CREATE_OSA} component={CreateCustomOSA} />
           <Route path={ROUTES.LANDING} component={HomePage} />
           <Route path={ROUTES.ADMIN} component={Admin} />
         </div>

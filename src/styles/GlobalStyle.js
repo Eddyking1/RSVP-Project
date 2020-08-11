@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
     --muted: hsl(240, 0%, 46%);
     --favourite: hsl(51, 95%, 58%);
   }
+
   body {
     width: 100vw;
     min-height: 100vh;
@@ -26,7 +27,6 @@ const GlobalStyle = createGlobalStyle`
     background: #83a4d4;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #b6fbff, #83a4d4);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #b6fbff, #83a4d4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
     color: var(--text-color);
     overflow-x:hidden;
     padding-bottom: 60px;
@@ -57,7 +57,6 @@ const Success = styled.div`
   font-weight: bold;
   text-align: center;
   position: absolute;
-  /* top: 50px; */
   bottom: 0;
   animation: ${LoadingKeyframe} 0.4s ease-in;
 `;

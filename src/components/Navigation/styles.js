@@ -7,8 +7,9 @@ import {
 
 export const Navbar = styled.div`
   height: 60px;
+  width:100%;
   border: none;
-  position: sticky;
+  position: absolute;
   top: 0;
   display: flex;
   justify-content: baseline;
@@ -26,6 +27,7 @@ export const Navbar = styled.div`
     cursor: pointer;
   }
 `;
+
 export const Overlay = styled.aside`
   min-height: 100vh;
   background: #83a4d4;  /* fallback for old browsers */
@@ -84,10 +86,11 @@ export const Overlay = styled.aside`
     }
   }
 `;
+
 export const NavigationExit = styled.button`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 5px;
+  left: 15px;
   transition: 0.4s;
   margin: 0 0;
   padding: 0 0;
@@ -96,8 +99,9 @@ export const NavigationExit = styled.button`
     transform: scale(1.1);
   }
 `;
+
 export const Sidebar = styled.div`
-  width: 100%;
+  width: 40%;
   min-height: 100vh;
   top: 0;
   position: absolute;

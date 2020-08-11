@@ -3,13 +3,15 @@ import { compose } from "recompose";
 import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 import styled, { keyframes } from "styled-components";
+import { Link } from "react-router-dom";
 import Confetti from "react-confetti";
 import * as ROUTES from "../../constants/routes";
-import PDF from "../PDF";
+/* import PDF from "../PDF"; */
 import OSA from "../OSA";
 
 const Wrapper = styled.div`
   width: 100vw;
+  height: calc(100vh);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,9 +19,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 50px 0;
   overflow: hidden;
-
+  z-index:9999999;
   button {
-    z-index: 999999;
     padding: 0.5em 1.5em;
     margin: 2em 0;
     border: none;
@@ -47,9 +48,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const DonyasPicture = styled.img`
-  width: 70%;
-  height: 650px;
+const Home = styled.div`
+  display:flex;
+  justify-content:center;
+  text-align: center;
+  align-content:center;
+  flex-direction:column;
 `;
 
 class HomePage extends React.Component {
@@ -59,28 +63,16 @@ class HomePage extends React.Component {
       clicks: 0,
       conffettiEnabled: true
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    this.props.history.push(ROUTES.OSA);
-  }
 
-  handleSlider() {
-    this.setState(prevState => ({
-      currentSlider: (prevState.currentSlider += 1)
-    }));
-  }
 
   render() {
     return (
       <Wrapper>
-        <Confetti ref="Confetti" />
-        <PDF src={require("../../assets/copy.pdf")} />
-        {/* <DonyasPicture src={require("../../assets/donyas.jpg")} />
-        <button onClick={this.handleClick}>OSA här!</button> */}
-        <OSA />
+        <Home>
+          <Link to={ROUTES.CREATE_OSA}> <h1>Create new RSVP</h1> </Link>
+        </Home>
       </Wrapper>
     );
   }

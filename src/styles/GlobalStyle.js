@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
     color: var(--text-color);
     overflow-x:hidden;
+    padding-bottom: 60px;
   }
   * {
     box-sizing: border-box;
@@ -45,11 +46,10 @@ const GlobalStyle = createGlobalStyle`
 
 `;
 
-
 const Success = styled.div`
   width: 100%;
   padding: 30px 0;
-  vertical-align: middle;
+  vertical-align: bottom;
   max-height: 100px;
   background: #4bb543;
   color: white;
@@ -57,11 +57,10 @@ const Success = styled.div`
   font-weight: bold;
   text-align: center;
   position: absolute;
-  top: 50px;
+  /* top: 50px; */
   bottom: 0;
   animation: ${LoadingKeyframe} 0.4s ease-in;
 `;
-
 
 const Loading = styled.div`
   width: 100%;
@@ -78,6 +77,26 @@ const Loading = styled.div`
   bottom: 0;
   animation: ${LoadingKeyframe} 0.8s infinite ease-in-out;
 `;
+const Button = styled.div`
+  padding: 0.5em 1.5em;
+  margin: 2em 0;
+  border: none;
+  outline: none;
+  background: #4bb543;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  border-radius: 0.1em;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.04);
+  }
+  &:disabled {
+    pointer-events: none;
+    background-color: grey;
+  }
+`;
 
 const FormStyle = styled.div`
   display: flex;
@@ -85,8 +104,8 @@ const FormStyle = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: calc(100vh - 60px);
-  width: 100%;
+  /* min-height: 160px; */
+  padding-top: 40px;
 
   margin: 0;
   flex-direction: column;
@@ -128,6 +147,13 @@ const FormStyle = styled.div`
     outline: none;
     transition: transform 0.3s ease-in-out;
     width: 100%;
+  }
+  label {
+    margin-left: 2em;
+    display: block;
+    position: relative;
+    margin-top: -1.7em; /* make this margin match whatever your line-height is */
+    line-height: 1.4em; /* can be set here, or elsewehere */
   }
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -182,4 +208,4 @@ const FormStyle = styled.div`
     font-size: 1.2em;
   }
 `;
-export { GlobalStyle, FormStyle, Success, Loading };
+export { GlobalStyle, FormStyle, Success, Loading, Button };

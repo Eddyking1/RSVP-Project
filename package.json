@@ -2,7 +2,10 @@
   "name": "StudentOSA",
   "version": "0.1.0",
   "author": "Edward Kumerius <pajmannen@hotmail.com>",
-  "license": "(CC BY-SA 2.0)",
+  "contributors": [
+    "Kristian Kjeldsen <jg@renegade.se>"
+  ],
+  "license": "CC-BY-SA-2.0",
   "description": "OSA with this webbApp!",
   "dependencies": {
     "@babel/core": "^7.4.0",
@@ -10,6 +13,7 @@
     "react": "^16.8.4",
     "react-confetti": "^2.7.0",
     "react-dom": "^16.8.4",
+    "react-pdf": "^4.0.5",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "recompose": "^0.30.0",

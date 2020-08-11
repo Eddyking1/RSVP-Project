@@ -5,11 +5,12 @@ import SignUpPage from "../SignUp";
 import SignInPage from "../SignIn";
 import HomePage from "../Home";
 import OSA from "../OSA";
+import Admin from "../Admin/NewAdminList.js";
+
 import PasswordForgetPage from "../PasswordForget";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { GlobalStyle } from "../../styles/GlobalStyle";
 import Navigation from "../Navigation";
-
 
 class App extends Component {
   state = {
@@ -23,25 +24,23 @@ class App extends Component {
     }
   };
 
-
   render() {
     const { open } = this.state;
 
     return (
-      
-     <Router>
+      <Router>
         <GlobalStyle />
         <Navigation
           sidebarToggleClickHandler={this.sidebarToggleClickHandler}
           open={open}
         />
-        <div>
+        <div key={"RSVP"}>
           <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
           <Route path={ROUTES.SIGN_IN} component={SignInPage} />
           <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
           <Route path={ROUTES.OSA} component={OSA} />
-          <Route path={ROUTES.HOME} component={HomePage} />
-
+          <Route path={ROUTES.LANDING} component={HomePage} />
+          <Route path={ROUTES.ADMIN} component={Admin} />
         </div>
       </Router>
     );
@@ -49,5 +48,3 @@ class App extends Component {
 }
 
 export default withAuthentication(App);
-
-

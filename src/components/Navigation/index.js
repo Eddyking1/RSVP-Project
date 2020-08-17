@@ -40,7 +40,7 @@ const NavigationAuth = () => (
       <Link to={ROUTES.OSA}>OSA</Link>
     </li>
     <li>
-      <Link to={ROUTES.CREATE_OSA}>Create New OSA</Link>
+      <Link to={ROUTES.CREATE_OSA}>Create New</Link>
     </li>
     <SignOutButton />
   </ul>

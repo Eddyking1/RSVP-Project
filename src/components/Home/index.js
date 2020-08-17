@@ -48,13 +48,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const Home = styled.div`
+const HomeDiv = styled.div`
   display:flex;
   justify-content:center;
   text-align: center;
   align-content:center;
   flex-direction:column;
 `;
+
+const Home = () => (
+  <div>
+    <HomeP/>
+  </div>
+);
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -64,15 +70,12 @@ class HomePage extends React.Component {
       conffettiEnabled: true
     };
   }
-
-
-
   render() {
     return (
       <Wrapper>
-        <Home>
+        <HomeDiv>
           <Link to={ROUTES.CREATE_OSA}> <h1>Create new RSVP</h1> </Link>
-        </Home>
+        </HomeDiv>
       </Wrapper>
     );
   }
@@ -80,7 +83,11 @@ class HomePage extends React.Component {
 
 const condition = authUser => !!authUser;
 
-export default compose(
+const HomeP = compose(
   withFirebase,
   withAuthorization(condition)
 )(HomePage);
+
+export default Home;
+
+export { HomeP }

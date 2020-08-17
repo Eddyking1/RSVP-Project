@@ -35,13 +35,13 @@ class App extends Component {
           open={open}
         />
         <div key={"RSVP"}>
-          <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-          <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-          <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-          <Route path={ROUTES.OSA} component={RSVPOSA} />
-          <Route path={ROUTES.CREATE_OSA} component={CreateCustomOSA} />
-          <Route path={ROUTES.LANDING} component={HomePage} />
-          <Route path={ROUTES.ADMIN} component={Admin} />
+          <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
+          <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+          <Route exact path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+          <Route exact path={ROUTES.OSA} component={RSVPOSA} />
+          <Route exact path={ROUTES.CREATE_OSA} component={CreateCustomOSA} />
+          <Route exact path={ROUTES.LANDING} component={HomePage} />
+          <Route exact path={ROUTES.ADMIN} component={Admin} />
         </div>
       </Router>
     );

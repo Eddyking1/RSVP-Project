@@ -69,11 +69,12 @@ export const Overlay = styled.aside`
       padding: 0 0 100px;
     }
     li {
-      width: 80%;
+      
       min-width: 200px;
       background: var(--background-color);
       border-radius: 10px;
       margin: 4px 0;
+      font-size:12px;
 
       a {
         display: block;
@@ -101,7 +102,7 @@ export const NavigationExit = styled.button`
 `;
 
 export const Sidebar = styled.div`
-  width: 40%;
+  width: 100%;
   min-height: 100vh;
   top: 0;
   position: absolute;
